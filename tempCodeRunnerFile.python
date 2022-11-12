@@ -1,0 +1,33 @@
+import json
+import requests
+
+web = requests.get('https://data.bmkg.go.id/DataMKG/TEWS/gempadirasakan.json')
+list_data = web.json()
+
+query = list_data['Infogempa']['gempa']
+
+for i in query:
+    tanggal = i['Tanggal']
+    jam     = i['Jam']
+    date_time = i['DateTime']
+    kordinat = i['Coordinates']
+    lintang  = i['Lintang']
+    bujur    = i['Bujur']
+    magnitude = i ['Magnitude']
+    kedalaman = i ['Kedalaman']
+    wilayah   = i ['Wilayah']
+    dirasakan = i['Dirasakan']
+    
+    print('''
+Tangggal    = {}
+jam         = {}
+Server Time = {}
+Koordinat   = {}
+Lintang     = {}
+Bujur       = {}
+Magnitude   = {}
+Kedalaman   = {}
+Wilayah     = {}
+Dirasakan   = {}
+    '''.format(tanggal,jam,date_time,kordinat,lintang,bujur,
+magnitude,kedalaman,wilayah,dirasakan))
